@@ -1,0 +1,16 @@
+Citizen.CreateThread(function()
+    while Config.FPSBOOST do
+        ClearAllBrokenGlass()
+        ClearAllHelpMessages()
+        LeaderboardsReadClearAll()
+        ClearBrief()
+        ClearGpsFlags()
+        ClearPrints()
+        ClearSmallPrints()
+        ClearReplayStats()
+        LeaderboardsClearCacheData()
+        ClearFocus()
+        ClearHdArea()
+        Citizen.Wait(Config.Time + 5)
+    end
+end)
