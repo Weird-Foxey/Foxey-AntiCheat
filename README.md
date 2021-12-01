@@ -1,5 +1,4 @@
 # Foxey-AntiCheat 
-# Releasing Soon
 just a simple open source Fivem anticheat just dont steal it and sell it please
 
 Join https://dsc.gg/XNA For all updates
