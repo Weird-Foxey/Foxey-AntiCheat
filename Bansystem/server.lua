@@ -1,5 +1,3 @@
-
-
 -- Locals
 local BanList            = {}
 local BanListLoad        = false
@@ -195,6 +193,7 @@ function loadBanList()
 end
 
 -- Ban Command
+
 --[[
 RegisterCommand("ACBan", function(source , args)
 	local license,identifier,liveid,xblid,discord,playerip
@@ -202,4 +201,5 @@ RegisterCommand("ACBan", function(source , args)
 	local reason    = table.concat(args, " ",2)
 	TriggerEvent("Foxey:Automatic-ban", "Banned By a Admin \n ".. reason , target)
 end, true)
+
 ]]

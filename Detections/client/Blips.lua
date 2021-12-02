@@ -10,7 +10,7 @@ Citizen.CreateThread(function()
                 end
             end
                 if blipcount > 0 then
-                    TriggerServerEvent("Foxey:Automatic-ban", " Blips, " ..v.name , source)
+                    TriggerServerEvent("Foxey:Automatic-ban", " Blips, ", source)
                 end
             end
     end

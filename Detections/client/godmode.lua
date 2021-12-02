@@ -5,7 +5,6 @@ Citizen.CreateThread(function()
             TriggerServerEvent("XNA:Automatic-ban", " Godmode ", source)
         end
 
-        
         Citizen.Wait(10000)
         local curPed = PlayerPedId()
         local curHealth = GetEntityHealth(curPed)
