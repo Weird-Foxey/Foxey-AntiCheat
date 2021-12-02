@@ -11,8 +11,6 @@ Anti ESX
 
 Anti Freecam
 
-Anti Sus Fuctions
-
 Anti Godmode
 
 Anti Invisble
