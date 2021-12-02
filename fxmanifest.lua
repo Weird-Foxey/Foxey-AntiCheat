@@ -3,7 +3,8 @@ game 'gta5'
 
 author 'Foxey#0505'
 description 'Foxey Anticheat'
-version '1.0.0'
+version '1.0.3'
+
 
 shared_script 'shared.lua'
 shared_script 'Config.lua'
@@ -20,8 +21,6 @@ client_scripts {
     'Detections/client/resourcecount.lua',
     'Detections/client/Blips.lua',
     'Detections/client/Attached.lua',
-    'Detections/client/fuctions.lua',
-
 }
 
 server_scripts {
@@ -32,5 +31,5 @@ server_scripts {
     'Detections/server/ExplosionProtection.lua',
     'Detections/server/giveWeapon.lua',
     'Detections/server/words.lua',
-    '@oxmysql/lib/MySQL.lua',
+    '@oxmysql/lib/MySQL.lua',       --  just change to your own database script
 }
