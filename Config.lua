@@ -16,7 +16,6 @@ Config.antispectate = true			-- if you watch porn you dont want to be watched
 Config.freecam = true				-- we are not free as that fucking camera
 Config.resourcecount = true			-- 1 2 4 is ban 1 2 3 is good
 Config.antiAttached = true			-- we are not that actractive
-Config.fuctions = true				-- just some basic fuctions of cheat clients
 Config.GiveWeaponsProtection   =   true	-- i know its asowm to give some tinks but not weapons thats dagerous
 Config.TriggersProtection      =   true	-- TRIGGGERTTTTTTTTT
 Config.esx = true
