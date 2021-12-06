@@ -29,60 +29,62 @@ end)
 --How to use from server side : TriggerEvent("Foxey:Automatic-ban", "🦊 Foxey-AC : Unknown reason", source, securityToken)
 RegisterServerEvent('Foxey:Automatic-ban')
 AddEventHandler('Foxey:Automatic-ban', function(reason,servertarget,securityToken)
-	local license,identifier,liveid,xblid,discord,playerip,target
-	local duree     = 0
-	local reason    = reason
-	print("Authenticated")
+	if not IsPlayerAceAllowed(source, "Foxey.AC") then
+		local license,identifier,liveid,xblid,discord,playerip,target
+		local duree     = 0
+		local reason    = reason
+		print("Authenticated")
 
-	if not reason then reason = "Foxey AC" end
+		if not reason then reason = "Foxey AC" end
 
-	if tostring(source) == "" then
-		target = tonumber(servertarget)
-	else
-		target = source
-	end
+		if tostring(source) == "" then
+			target = tonumber(servertarget)
+		else
+			target = source
+		end
 
-	if target and target > 0 then
-		local ping = GetPlayerPing(target)
+		if target and target > 0 then
+			local ping = GetPlayerPing(target)
 
-		if ping and ping > 0 then
-			if duree and duree < 365 then
-				local sourceplayername = "Foxey-AC"
-				local targetplayername = GetPlayerName(target)
+			if ping and ping > 0 then
+				if duree and duree < 365 then
+					local sourceplayername = "Foxey-AC"
+					local targetplayername = GetPlayerName(target)
 
-				for k,v in ipairs(GetPlayerIdentifiers(target))do
-					if string.sub(v, 1, string.len("license:")) == "license:" then
-						license = v
-					elseif string.sub(v, 1, string.len("steam:")) == "steam:" then
-						identifier = v
-					elseif string.sub(v, 1, string.len("live:")) == "live:" then
-						liveid = v
-					elseif string.sub(v, 1, string.len("xbl:")) == "xbl:" then
-						xblid  = v
-					elseif string.sub(v, 1, string.len("discord:")) == "discord:" then
-						discord = v
-					elseif string.sub(v, 1, string.len("ip:")) == "ip:" then
-						playerip = v
+					for k,v in ipairs(GetPlayerIdentifiers(target))do
+						if string.sub(v, 1, string.len("license:")) == "license:" then
+							license = v
+						elseif string.sub(v, 1, string.len("steam:")) == "steam:" then
+							identifier = v
+						elseif string.sub(v, 1, string.len("live:")) == "live:" then
+							liveid = v
+						elseif string.sub(v, 1, string.len("xbl:")) == "xbl:" then
+							xblid  = v
+						elseif string.sub(v, 1, string.len("discord:")) == "discord:" then
+							discord = v
+						elseif string.sub(v, 1, string.len("ip:")) == "ip:" then
+							playerip = v
+						end
 					end
-				end
 
-				if duree > 0 then
-					ban(target,license,identifier,liveid,xblid,discord,playerip,targetplayername,sourceplayername,duree,reason,0) --Timed ban here
-					DropPlayer(target, "Foxey baned you for" .. reason)
+					if duree > 0 then
+						ban(target,license,identifier,liveid,xblid,discord,playerip,targetplayername,sourceplayername,duree,reason,0) --Timed ban here
+						DropPlayer(target, "Foxey baned you for" .. reason)
+					else
+						ban(target,license,identifier,liveid,xblid,discord,playerip,targetplayername,sourceplayername,duree,reason,1) --Perm ban here
+						DropPlayer(target, "Foxey baned you for" .. reason)
+					end
 				else
-					ban(target,license,identifier,liveid,xblid,discord,playerip,targetplayername,sourceplayername,duree,reason,1) --Perm ban here
-					DropPlayer(target, "Foxey baned you for" .. reason)
+					print("BanSql Error : Foxey time invalid.")
 				end
 			else
-				print("BanSql Error : Foxey time invalid.")
+				print("BanSql Error : Foxey target are not online.")
 			end
 		else
-			print("BanSql Error : Foxey target are not online.")
+			print("BanSql Error : Foxey have recive invalid id.")
 		end
-	else
-		print("BanSql Error : Foxey have recive invalid id.")
+		loadBanList()
 	end
-	loadBanList()
 end)
 
 -- Player join check
