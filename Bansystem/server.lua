@@ -203,10 +203,10 @@ end
 
 
 RegisterCommand("ACBan", function(source , args)
-	--if not IsPlayerAceAllowed(source, "Foxey.AC") then
+	if IsPlayerAceAllowed(source, "Foxey.AC") then
 		local license,identifier,liveid,xblid,discord,playerip
 		local target    = tonumber(args[1])
 		local reason    = table.concat(args, " ",2)
 		TriggerEvent("Foxey:Automatic-ban", "Banned By a Admin \n ".. reason , target)
-	--end
+	end
 end, true)
