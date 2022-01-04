@@ -3,7 +3,7 @@ game 'gta5'
 
 author 'Foxey#0505'
 description 'Foxey Anticheat'
-version '1.0.3'
+version '1.0.4'
 
 
 shared_script 'shared.lua'
