@@ -1,6 +1,6 @@
 Config = {}
 
-Config.Webhook = "https://discordapp.com/api/webhooks/927880731311603722/E-vQQfEUoOLhpO-q-gokEGkmurrQEqiU0Z08PLBEfM6lMbHI27phZS1YzPTxV_esPy5b"
+Config.Webhook = ""
 
 Config.Loadcommand      =   'FoxeyAC:Client:OnPlayerLoaded' -- use if you use free cam on spawn and multicharacter
 Config.UnLoadcommand    =   'FoxeyAC:Client:OnPlayerUnload' -- qb thing
