@@ -1,6 +1,6 @@
 Config = {}
 
-Config.Webhook = ""
+Config.Webhook = "Your_Webhook"
 
 Config.Loadcommand      =   'FoxeyAC:Client:OnPlayerLoaded' -- use if you use free cam on spawn and multicharacter
 Config.UnLoadcommand    =   'FoxeyAC:Client:OnPlayerUnload' -- qb thing
