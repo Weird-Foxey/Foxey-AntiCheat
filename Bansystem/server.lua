@@ -2,6 +2,12 @@
 local BanList            = {}
 local BanListLoad        = false
 
+local DISCORD_WEBHOOK = Config.Webhook
+local DISCORD_NAME = "XNA | Foxey AC"
+local DISCORD_IMAGE = "https://cdn.discordapp.com/attachments/915014695444967425/915014858716643349/gaming-logo-template-featuring-cuphead-inspired-graphics-2957_4.png"
+
+PerformHttpRequest(DISCORD_WEBHOOK, function(err, text, headers) end, 'POST', json.encode({username = DISCORD_NAME, content = "Foxey AntiCheat **ONLINE**", avatar_url = DISCORD_IMAGE}), { ['Content-Type'] = 'application/json' })
+
 -- Banlist load
 CreateThread(function()
 	while true do
@@ -25,15 +31,12 @@ CreateThread(function()
 	end
 end)
 
--- Automatic Ban
---How to use from server side : TriggerEvent("Foxey:Automatic-ban", "🦊 Foxey-AC : Unknown reason", source, securityToken)
 RegisterServerEvent('Foxey:Automatic-ban')
 AddEventHandler('Foxey:Automatic-ban', function(reason,servertarget,securityToken)
-	if not IsPlayerAceAllowed(source, "Foxey.AC") then
+	if not IsPlayerAceAllowed(servertarget, "Foxey.AC") then
 		local license,identifier,liveid,xblid,discord,playerip,target
 		local duree     = 0
 		local reason    = reason
-		print("Authenticated")
 
 		if not reason then reason = "Foxey AC" end
 
@@ -69,9 +72,11 @@ AddEventHandler('Foxey:Automatic-ban', function(reason,servertarget,securityToke
 
 					if duree > 0 then
 						ban(target,license,identifier,liveid,xblid,discord,playerip,targetplayername,sourceplayername,duree,reason,0) --Timed ban here
+						PerformHttpRequest(DISCORD_WEBHOOK, function(err, text, headers) end, 'POST', json.encode({username = DISCORD_NAME, content = targetplayername .. "**Banned** \nReason: ".. reason, avatar_url = DISCORD_IMAGE}), { ['Content-Type'] = 'application/json' })
 						DropPlayer(target, "Foxey baned you for" .. reason)
 					else
 						ban(target,license,identifier,liveid,xblid,discord,playerip,targetplayername,sourceplayername,duree,reason,1) --Perm ban here
+						PerformHttpRequest(DISCORD_WEBHOOK, function(err, text, headers) end, 'POST', json.encode({username = DISCORD_NAME, content = targetplayername .. " **Banned** \nReason: ".. reason, avatar_url = DISCORD_IMAGE}), { ['Content-Type'] = 'application/json' })
 						DropPlayer(target, "Foxey baned you for" .. reason)
 					end
 				else
@@ -196,12 +201,12 @@ end
 
 -- Ban Command
 
---[[
-RegisterCommand("ACBan", function(source , args)
-	local license,identifier,liveid,xblid,discord,playerip
-	local target    = tonumber(args[1])
-	local reason    = table.concat(args, " ",2)
-	TriggerEvent("Foxey:Automatic-ban", "Banned By a Admin \n ".. reason , target)
-end, true)
 
-]]
+RegisterCommand("ACBan", function(source , args)
+	--if not IsPlayerAceAllowed(source, "Foxey.AC") then
+		local license,identifier,liveid,xblid,discord,playerip
+		local target    = tonumber(args[1])
+		local reason    = table.concat(args, " ",2)
+		TriggerEvent("Foxey:Automatic-ban", "Banned By a Admin \n ".. reason , target)
+	--end
+end, true)
