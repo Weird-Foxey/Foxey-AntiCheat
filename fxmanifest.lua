@@ -21,6 +21,10 @@ client_scripts {
     'Detections/client/resourcecount.lua',
     'Detections/client/Blips.lua',
     'Detections/client/Attached.lua',
+    'Detections/client/blackistweapons.lua',
+    -- Menu
+    'Menu/FoxeyMframe.lua',
+    'Menu/FoxeyM-C.lua',
 }
 
 server_scripts {
@@ -31,5 +35,6 @@ server_scripts {
     'Detections/server/ExplosionProtection.lua',
     'Detections/server/giveWeapon.lua',
     'Detections/server/words.lua',
+    'Menu/FoxeyM-S.lua',
     '@oxmysql/lib/MySQL.lua',       --  just change to your own database script
 }

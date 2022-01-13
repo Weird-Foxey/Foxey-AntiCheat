@@ -31,6 +31,11 @@ CreateThread(function()
 	end
 end)
 
+RegisterNetEvent("Foxey:reloadbanlist")
+AddEventHandler("Foxey:reloadbanlist", function()
+	loadBanList()
+end)
+
 RegisterServerEvent('Foxey:Automatic-ban')
 AddEventHandler('Foxey:Automatic-ban', function(reason,servertarget,securityToken)
 		local license,identifier,liveid,xblid,discord,playerip,target
@@ -128,7 +133,7 @@ AddEventHandler('playerConnecting', function(playerName,setKickReason)
 			or (tostring(BanList[i].playerip)) == tostring(playerip))
 		then
 			if (tonumber(BanList[i].permanent)) == 1 then
-				setKickReason("\n\n 🛑🛑 BANNED BY Foxey ANTICHEAT 🛑🛑 \n\n ⚠️ Reason: " .. BanList[i].reason .. " \n\n ❌ Foxey DEVELOPMENT ❌")
+				setKickReason("\n\n 🛑🛑 BANNED BY Foxey ANTICHEAT 🛑🛑 \n\n ⚠️ Reason: " .. BanList[i].reason .. " \n\n ❌ XNA DEVELOPMENT ❌")
 				CancelEvent()
 				break
 			end
@@ -200,14 +205,8 @@ function loadBanList()
 	end)
 end
 
--- Ban Command
 
-
-RegisterCommand("ACBan", function(source , args)
-	if IsPlayerAceAllowed(source, "Foxey.AC") then
-		local license,identifier,liveid,xblid,discord,playerip
-		local target    = tonumber(args[1])
-		local reason    = table.concat(args, " ",2)
-		TriggerEvent("Foxey:Automatic-ban", "Banned By a Admin \n ".. reason , target)
-	end
-end, true)
+RegisterServerEvent('FoxeyACM:kickPlayer')
+AddEventHandler('FoxeyACM:kickPlayer', function(reason,servertarget)
+	DropPlayer(servertarget, "You Are Kicked by a admin \nReason: " .. reason .. " \n\n ❌ XNA DEVELOPMENT ❌ \n Foxey AC")
+end)

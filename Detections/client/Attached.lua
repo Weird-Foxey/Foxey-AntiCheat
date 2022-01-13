@@ -18,12 +18,13 @@ end
 
 Citizen.CreateThread(function()
 	while Config.antiAttached do
+		local CageObjs = Config.CageObjs
 		Citizen.Wait(500)
 		local ped = PlayerPedId()
 		local handle, object = FindFirstObject()
 		local finished = false
 		repeat
-			Wait(1)
+			Wait(1000)
 			if IsEntityAttached(object) and DoesEntityExist(object) then
 				if GetEntityModel(object) == GetHashKey("prop_acc_guitar_01") then
 					ReqAndDelete(object, true)
